@@ -1,0 +1,18 @@
+<div class="{{ data.classes }}" mat-dialog>
+  <h1 mat-dialog-title>Hi {{ data.name }}</h1>
+  <div mat-dialog-content>
+    <p>What's your favorite animal?</p>
+    <mat-form-field appearance="fill">
+      <input matInput />
+
+      <mat-label>{{ data.classes }}</mat-label>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+      Ok
+    </button>
+    <button mat-button color="accent">Accent</button>
+  </div>
+</div>
