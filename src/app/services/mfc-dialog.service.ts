@@ -7,26 +7,83 @@ import { DialogComponent } from '../components/dialog/dialog.component';
 })
 export class MFCDialogService {
   constructor(public dialog: MatDialog) {}
-  OpenDialog(data: any) {
-    this.dialog.open(DialogComponent, { data });
+  openDialog(data: any) {
+    return this.dialog.open(DialogComponent, {
+      data,
+      position: data.position,
+    });
   }
   info(data: any): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        ...data,
-        classes: 'info-dialog',
-      },
-    });
+    data = {
+      ...data,
+      dialogType: 'info',
+      position: { left: '10px', top: '10px' },
+    };
+    const dialogRef = this.openDialog(data);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      setTimeout(
+        () =>
+          this.success({
+            ...result,
+            dialogMsg: ' Success dialog!!',
+            position: { right: '10px', top: '10px' },
+          }),
+        1000
+      );
+    });
+  }
+  success(data: any): void {
+    data = {
+      ...data,
+      dialogType: 'success',
+    };
+    const dialogRef = this.openDialog(data);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      setTimeout(
+        () =>
+          this.error({
+            ...result,
+            dialogMsg: ' Error dialog!!',
+            position: { left: '10px', bottom: '10px' },
+          }),
+        1000
+      );
     });
   }
   error(data: any): void {
-    const dialogRef = this.dialog.open(DialogComponent, { data });
+    data = {
+      ...data,
+      dialogType: 'error',
+    };
+    const dialogRef = this.openDialog(data);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      setTimeout(
+        () =>
+          this.warning({
+            ...result,
+            dialogMsg: ' Warning dialog!!',
+            position: { right: '10px', bottom: '10px' },
+          }),
+        1000
+      );
+    });
+  }
+
+  warning(data: any): void {
+    data = {
+      ...data,
+      dialogType: 'warning',
+    };
+    const dialogRef = this.openDialog(data);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      setTimeout(
+        () => this.info({ ...result, dialogMsg: ' Info dialog!!' }),
+        1000
+      );
     });
   }
 }

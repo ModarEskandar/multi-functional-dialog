@@ -9,19 +9,33 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-.info-dialog {
-  --mat-mdc-dialog-button-color: #29178a;
-  --mdc-dialog-supporting-text-color: #f23a2f;
-  --mdc-dialog-container-color: #179526;
-  text-align: right;
-
-  justify-content: center;
+:root {
+  --info: #48ddff;
+  --success: #53ff55;
+  --error: #ff3535;
+  --warning: #ffb62f;
 }
-.green-snackbar {
-  --mat-mdc-snack-bar-button-color: #ffffff;
-  --mdc-snackbar-supporting-text-color: #43a446;
-  --mdc-snackbar-container-color: #ffffff;
-  text-align: right;
-  justify-content: center;
+.dialog {
+  position: relative;
+  margin: 10;
+  padding: 10;
+  --mdc-dialog-supporting-text-color: #ffffff;
+  text-align: center;
+}
+.info-dialog {
+  background-color: #48ddff;
+}
+.success-dialog {
+  background-color: #53ff55;
+}
+.error-dialog {
+  background-color: #ff3535;
+}
+.warning-dialog {
+  background-color: #ffb62f;
+}
+.dialog-icon {
+  position: absolute;
+  padding: 5px;
+  color: white;
 }

@@ -10,13 +10,16 @@ import { DialogData } from './components/dialog/dialog.component';
 export class AppComponent implements OnInit {
   title = 'Dialog';
   data: DialogData = {
-    name: 'modar',
-    animal: 'dragon',
+    dialogMsg: '',
   };
   constructor(private dialogService: MFCDialogService) {}
+
   ngOnInit(): void {
     console.log(this.data);
 
-    this.dialogService.info(this.data);
+    this.dialogService.info({
+      ...this.data,
+      dialogMsg: 'This is Information dialog!!',
+    });
   }
 }
